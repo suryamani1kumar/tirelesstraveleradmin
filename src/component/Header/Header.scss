@@ -1,0 +1,67 @@
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    padding: 0 1.5rem;
+    background-color: white;
+    border-bottom: 1px solid #e2e8f0;
+  
+    &__left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+  
+      .topbar__icon {
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+  
+      .topbar__search {
+        background-color: #f4f4fa;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        display: flex;
+        align-items: center;
+  
+        input {
+          border: none;
+          background: transparent;
+          outline: none;
+          font-size: 0.9rem;
+        }
+  
+        .search-icon {
+          font-size: 1rem;
+          color: #666;
+          margin-left: 0.5rem;
+        }
+      }
+    }
+  
+    &__right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+  
+      .topbar__profile {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+  
+        img {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+  
+        span {
+          font-size: 0.9rem;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+  
