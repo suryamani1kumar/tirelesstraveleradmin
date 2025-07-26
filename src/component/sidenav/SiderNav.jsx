@@ -1,17 +1,10 @@
 import { useState } from "react";
-import { TbLogout } from "react-icons/tb";
-import { IoMdClose } from "react-icons/io";
-import {
-  MdOutlineArrowForwardIos,
-  MdOutlineKeyboardArrowDown,
-} from "react-icons/md";
-import { Link, useNavigate } from "react-router-dom";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { Link } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
-import { axiosInstance } from "../../utils/axiosInstance";
 import { menuItems } from "../../utils/sidenavurl";
 
-const SiderNav = ({ setIsAuthenticated, isSidebarActive }) => {
-  let navigate = useNavigate();
+const SiderNav = ({ isSidebarActive }) => {
   const [activeMenu, setActiveMenu] = useState(null);
 
   const handleMenuClick = (index) => {

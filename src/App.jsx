@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 import Header from "./component/Header/Header";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isSidebarActive, setIsSidebarActive] = useState(false);
   useEffect(() => {
     const access_token = Cookies.get("a_token");
