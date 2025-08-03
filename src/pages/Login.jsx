@@ -1,19 +1,19 @@
-import { HiOutlineUserCircle } from 'react-icons/hi';
-import { FaLock, FaUser } from 'react-icons/fa';
-import { BiSolidHide, BiSolidShow } from 'react-icons/bi';
-import { useState } from 'react';
-import { MdError } from 'react-icons/md';
-import { Link, useNavigate } from 'react-router-dom';
-import { axiosInstance } from '../utils/axiosInstance';
-import Loader from '../component/loader/Loader';
+import { HiOutlineUserCircle } from "react-icons/hi";
+import { FaLock, FaUser } from "react-icons/fa";
+import { BiSolidHide, BiSolidShow } from "react-icons/bi";
+import { useState } from "react";
+import { MdError } from "react-icons/md";
+import { Link, useNavigate } from "react-router-dom";
+import { axiosInstance } from "../utils/axiosInstance";
+import Loader from "../component/loader/Loader";
 
 const Login = (props) => {
   const { setIsAuthenticated } = props;
   let navigate = useNavigate();
   const [passwordHideShow, setPasswordHideShow] = useState(true);
   const [loginDetails, setLoginDetails] = useState({
-    password: '',
-    userormail: '',
+    password: "",
+    userormail: "",
   });
   const [errorMessage, setErrorMessage] = useState({});
   const [laoding, setLoading] = useState(false);
@@ -33,11 +33,11 @@ const Login = (props) => {
   const handlelogin = (e) => {
     e.preventDefault();
     if (!loginDetails.userormail && !loginDetails.password) {
-      setErrorMessage({ password: 'error', userormail: 'error' });
+      setErrorMessage({ password: "error", userormail: "error" });
       return;
     } else if (!loginDetails.userormail) {
       setErrorMessage({
-        userormail: 'Please fill out email or username fields.',
+        userormail: "Please fill out email or username fields.",
       });
       return;
     }
@@ -49,18 +49,29 @@ const Login = (props) => {
     axiosInstance
       .post(`login`, body)
       .then((res) => {
-
         setIsAuthenticated(true);
-        navigate('/dashboard');
+        navigate("/dashboard");
         setLoading(false);
       })
-      .catch((err) => {
-        if (err?.response?.status === 403) {
-          alert('Access Denied!');
-        } else if (err?.response?.status === 404) {
-          alert(err.message);
+      .catch((error) => {
+        if (error.response) {
+          // Server responded with an error
+          const status = error.response.status;
+          const message = error.response.data.message;
+
+          if (status === 400) {
+            setErrorMessage({
+              userormail: message,
+            });
+          } else if (status === 404) {
+            setErrorMessage({ password: `${message}` });
+          } else {
+            alert(`Server error ${status}: ${message}`);
+          }
         } else {
-          console.log('error', err.message);
+          // Network error
+          console.error("Network error:", error.message);
+          alert("Network error. Try again later.");
         }
         setLoading(false);
       });
@@ -112,7 +123,7 @@ const Login = (props) => {
                 </span>
               </div>
               <input
-                type={passwordHideShow ? 'password' : 'text'}
+                type={passwordHideShow ? "password" : "text"}
                 placeholder="Enter password"
                 className="login_form-control"
                 name="password"
