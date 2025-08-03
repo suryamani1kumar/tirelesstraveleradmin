@@ -1,7 +1,6 @@
 import AddBlog from "../pages/blog/addBlog";
 import EditBlog from "../pages/blog/EditBlog";
 import Dashboard from "../pages/dashboard";
-import ForgetPassword from "../pages/ForgetPassword";
 import Login from "../pages/Login";
 import viewBlog from "../pages/blog/viewBlog";
 import Category from "../pages/category/Category";
@@ -22,5 +21,4 @@ export const protectedRoutes = [
 
 export const publicRoutes = [
   { path: "/", Component: Login, needsProps: true },
-  { path: "/forgotpassword", Component: ForgetPassword },
 ];
