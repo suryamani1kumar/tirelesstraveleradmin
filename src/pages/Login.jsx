@@ -13,7 +13,7 @@ const Login = (props) => {
   const [passwordHideShow, setPasswordHideShow] = useState(true);
   const [loginDetails, setLoginDetails] = useState({
     password: "",
-    userormail: "",
+    Email: "",
   });
   const [errorMessage, setErrorMessage] = useState({});
   const [laoding, setLoading] = useState(false);
@@ -32,17 +32,17 @@ const Login = (props) => {
   };
   const handlelogin = (e) => {
     e.preventDefault();
-    if (!loginDetails.userormail && !loginDetails.password) {
-      setErrorMessage({ password: "error", userormail: "error" });
+    if (!loginDetails.Email && !loginDetails.password) {
+      setErrorMessage({ password: "error", Email: "error" });
       return;
-    } else if (!loginDetails.userormail) {
+    } else if (!loginDetails.Email) {
       setErrorMessage({
-        userormail: "Please fill out email or username fields.",
+        Email: "Please fill out email or username fields.",
       });
       return;
     }
     const body = {
-      userIdOrmail: loginDetails.userormail,
+      email: loginDetails.Email,
       password: loginDetails.password,
     };
     setLoading(true);
@@ -61,7 +61,7 @@ const Login = (props) => {
 
           if (status === 400) {
             setErrorMessage({
-              userormail: message,
+              Email: message,
             });
           } else if (status === 404) {
             setErrorMessage({ password: `${message}` });
@@ -86,13 +86,13 @@ const Login = (props) => {
           </div>
 
           <form className="login-form" onSubmit={handlelogin}>
-            {errorMessage.password && errorMessage.userormail ? (
+            {errorMessage.password && errorMessage.Email ? (
               <div className="error error-style-1">
                 <MdError /> Please fill out all required fields.
               </div>
-            ) : errorMessage.userormail ? (
+            ) : errorMessage.Email ? (
               <div className="error error-style-1">
-                <MdError /> {errorMessage.userormail}
+                <MdError /> {errorMessage.Email}
               </div>
             ) : errorMessage.password ? (
               <div className="error error-style-1">
@@ -110,9 +110,9 @@ const Login = (props) => {
                 className="login_form-control"
                 placeholder="Enter email or username"
                 autoComplete="off"
-                name="userormail"
-                id="userormail"
-                value={loginDetails.userormail}
+                name="Email"
+                id="Email"
+                value={loginDetails.Email}
                 onChange={handleloginDetails}
               />
             </div>

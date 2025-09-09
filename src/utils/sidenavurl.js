@@ -26,14 +26,12 @@ export const menuItems = [
   //     { label: "User Roles", path: "/user", icon: RiAdminFill },
   //   ],
   // },
-  // {
-  //   id: 2,
-  //   label: "Marketing",
-  //   icon: SiGooglemarketingplatform,
-  //   submenu: [
-  //     { label: "Email Campaigns", path: "/mail", icon: MdOutlineAttachEmail },
-  //   ],
-  // },
+  {
+    id: 2,
+    label: "Order",
+    icon: LuLayoutDashboard,
+    path: "/order",
+  },
   {
     id: 3,
     label: "Content",

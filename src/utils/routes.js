@@ -6,17 +6,17 @@ import viewBlog from "../pages/blog/viewBlog";
 import Category from "../pages/category/Category";
 import User from "../pages/user/User";
 import Media from "../pages/media/media";
-import Email from "../pages/marketing/email";
+import Order from "../pages/order";
 
 export const protectedRoutes = [
   { path: "/dashboard", Component: Dashboard },
+  { path: "/order", Component: Order },
   { path: "/blog/addblog", Component: AddBlog },
   { path: "/blog/viewblog", Component: viewBlog },
   { path: "/blog/:url", Component: EditBlog },
   { path: "/category", Component: Category },
   { path: "/user", Component: User },
   { path: "/media", Component: Media },
-  { path: "/mail", Component: Email },
 ];
 
 export const publicRoutes = [

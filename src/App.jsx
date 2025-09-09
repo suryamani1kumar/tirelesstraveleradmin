@@ -3,19 +3,31 @@ import "./App.css";
 import SiderNav from "./component/sidenav/SiderNav";
 import { useState, useEffect } from "react";
 import { protectedRoutes, publicRoutes } from "./utils/routes";
-import Cookies from "js-cookie";
 import Header from "./component/Header/Header";
+import axios from "axios";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isSidebarActive, setIsSidebarActive] = useState(false);
-  useEffect(() => {
-    const access_token = Cookies.get("a_token");
-    const refesh_token = Cookies.get("r_token");
-    if (access_token || refesh_token) {
-      setIsAuthenticated(true);
+
+  const checkToken = async () => {
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_BASE_URL}verify`, {
+        withCredentials: true,
+      });
+      if (res.status === 200) {
+        setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
+      }
+    } catch (err) {
+      setIsAuthenticated(false);
     }
-  }, [isAuthenticated]);
+  };
+
+  useEffect(() => {
+    checkToken();
+  }, []);
 
   return (
     <BrowserRouter>
